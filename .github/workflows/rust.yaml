@@ -13,6 +13,7 @@ jobs:
   check:
     name: Rust project
     runs-on: ubuntu-latest
+    container: ubuntu:rolling
     steps:
       - uses: actions/checkout@v2
       - name: Install latest nightly
@@ -21,9 +22,6 @@ jobs:
             toolchain: nightly
             override: true
             components: rustfmt, clippy
-      
-      - name: Force update glib
-        run: wget http://ftp.de.debian.org/debian/pool/main/g/glib2.0/libglib2.0-0_2.66.8-1_amd64.deb && sudo dpkg -i libglib2.0-0_2.66.8-1_amd64.deb
 
       - name: Run cargo build
         uses: actions-rs/cargo@v1
