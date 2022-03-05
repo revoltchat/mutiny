@@ -16,6 +16,10 @@ jobs:
     container: ubuntu:rolling
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: sudo apt-get install -y curl
+
       - name: Install latest nightly
         uses: actions-rs/toolchain@v1
         with:
