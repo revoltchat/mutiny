@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt-get update
-          apt-get install -y curl
+          apt-get install -y curl build-essential
 
       - name: Install latest nightly
         uses: actions-rs/toolchain@v1
