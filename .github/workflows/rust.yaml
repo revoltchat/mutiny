@@ -23,7 +23,7 @@ jobs:
         run: |
           ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
           apt-get update
-          apt-get install -y curl build-essential pkg-config libgtk-4-dev
+          apt-get install -y curl build-essential pkg-config libgtk-4-dev libadwaita-1
 
       - name: Install latest nightly
         uses: actions-rs/toolchain@v1
