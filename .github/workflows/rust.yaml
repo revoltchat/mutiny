@@ -13,7 +13,7 @@ jobs:
   check:
     name: Rust project
     runs-on: ubuntu-latest
-    container: ubuntu:rolling
+    container: ubuntu:devel
     steps:
       - uses: actions/checkout@v2
       
