@@ -22,8 +22,8 @@ jobs:
             override: true
             components: rustfmt, clippy
       
-      - name: Update glib
-        run: sudo apt-get install -y libglib2.0-dev
+      - name: Force update glib
+        run: wget http://ftp.de.debian.org/debian/pool/main/g/glib2.0/libglib2.0-0_2.66.8-1_amd64.deb && sudo dpkg -i libglib2.0-0_2.66.8-1_amd64.deb
 
       - name: Run cargo build
         uses: actions-rs/cargo@v1
