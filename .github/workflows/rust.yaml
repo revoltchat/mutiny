@@ -18,7 +18,10 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Install dependencies
+        env:
+          TZ: Europe/London
         run: |
+          ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
           apt-get update
           apt-get install -y curl build-essential pkg-config glib2.0
 
