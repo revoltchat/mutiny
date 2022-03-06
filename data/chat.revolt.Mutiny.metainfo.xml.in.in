@@ -3,12 +3,11 @@
 <component type="desktop-application">
   <id>@app-id@</id>
   <metadata_license>CC0</metadata_license>
-  <!-- Insert your license of choice here -->
-  <!-- <project_license>MIT</project_license> -->
+  <project_license>GPL-3.0-or-later</project_license>
   <name>Mutiny</name>
-  <summary>Write a GTK + Rust application</summary>
+  <summary>Client for the Revolt chat platform</summary>
   <description>
-    <p>A boilerplate template for GTK + Rust. It uses Meson as a build system and has flatpak support by default.</p>
+    <p>Mutiny is a client for the Revolt chat platform that complies with the GNOME Human Interface Guidelines.</p>
   </description>
   <screenshots>
     <screenshot type="default">
@@ -25,12 +24,12 @@
     <content_attribute id="social-contacts">intense</content_attribute>
   </content_rating>
   <releases>
-    <release version="0.0.1" date="2019-07-11" />
+    <release version="0.0.1" date="2022-03-06" />
   </releases>
   <kudos>
     <!--
        GNOME Software kudos:
-       https://gitlab.gnome.org/GNOME/gnome-software/blob/master/doc/kudos.md
+       https://gitlab.gnome.org/GNOME/gnome-software/-/blob/main/doc/kudos.md
      -->
     <kudo>ModernToolkit</kudo>
     <kudo>HiDpiIcon</kudo>
