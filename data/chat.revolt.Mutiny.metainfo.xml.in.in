@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Revolt 2019 <hello@revolt.chat> -->
+<component type="desktop-application">
+  <id>@app-id@</id>
+  <metadata_license>CC0</metadata_license>
+  <!-- Insert your license of choice here -->
+  <!-- <project_license>MIT</project_license> -->
+  <name>Mutiny</name>
+  <summary>Write a GTK + Rust application</summary>
+  <description>
+    <p>A boilerplate template for GTK + Rust. It uses Meson as a build system and has flatpak support by default.</p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://gitlab.gnome.org/bilelmoussaoui/mutiny/raw/master/data/resources/screenshots/screenshot1.png</image>
+      <caption>Main window</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/revoltchat/mutiny</url>
+  <url type="bugtracker">https://github.com/revoltchat/mutiny/issues</url>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-chat">moderate</content_attribute>
+    <content_attribute id="social-info">moderate</content_attribute>
+    <content_attribute id="social-audio">moderate</content_attribute>
+    <content_attribute id="social-contacts">intense</content_attribute>
+  </content_rating>
+  <releases>
+    <release version="0.0.1" date="2019-07-11" />
+  </releases>
+  <kudos>
+    <!--
+       GNOME Software kudos:
+       https://gitlab.gnome.org/GNOME/gnome-software/blob/master/doc/kudos.md
+     -->
+    <kudo>ModernToolkit</kudo>
+    <kudo>HiDpiIcon</kudo>
+  </kudos>
+  <developer_name>Revolt</developer_name>
+  <update_contact>hello@revolt.chat</update_contact>
+  <translation type="gettext">@gettext-package@</translation>
+  <launchable type="desktop-id">@app-id@.desktop</launchable>
+</component>

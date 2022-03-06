@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Mutiny
+Comment=Revolt Client
+Type=Application
+Exec=mutiny
+Terminal=false
+Categories=Network;InstantMessaging
+Keywords=Revolt;Chat
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=@icon@
+StartupNotify=true

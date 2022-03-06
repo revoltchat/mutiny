@@ -1,0 +1,6 @@
+data/chat.revolt.Mutiny.desktop.in.in
+data/chat.revolt.Mutiny.gschema.xml.in
+data/chat.revolt.Mutiny.metainfo.xml.in.in
+data/resources/ui/shortcuts.ui
+data/resources/ui/window.ui
+src/application.rs
