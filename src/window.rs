@@ -14,15 +14,15 @@ mod imp {
     #[derive(Debug, CompositeTemplate)]
     #[template(resource = "/chat/revolt/Mutiny/ui/window.ui")]
     pub struct MutinyAppWindow {
-        #[template_child]
-        pub headerbar: TemplateChild<adw::HeaderBar>,
+        // #[template_child]
+        // pub headerbar: TemplateChild<adw::HeaderBar>,
         pub settings: gio::Settings,
     }
 
     impl Default for MutinyAppWindow {
         fn default() -> Self {
             Self {
-                headerbar: TemplateChild::default(),
+                // headerbar: TemplateChild::default(),
                 settings: gio::Settings::new(APP_ID),
             }
         }
