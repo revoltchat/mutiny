@@ -12,3 +12,4 @@ vendor
 flatpak_app/
 .flatpak-builder/
 recompile/
+.vscode

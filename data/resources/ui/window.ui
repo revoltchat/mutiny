@@ -17,32 +17,112 @@
     </section>
   </menu>
   <template class="MutinyAppWindow" parent="AdwApplicationWindow">
-    <property name="content">
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
+    <property name="default-width">980</property>
+    <property name="default-height">640</property>
+
+    <child>
+      <object class="AdwLeaflet" id="main_leaflet">
+        <property name="hexpand">True</property>
+
         <child>
-          <object class="AdwHeaderBar" id="headerbar">
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title" translatable="yes">Mutiny</property>
+          <object class="GtkBox" id="sidebar_box">
+            <property name="hexpand">False</property>
+            <property name="orientation">vertical</property>
+
+            <child>
+              <object class="AdwHeaderBar" id="header">
+                <property name="show-start-title-buttons">True</property>
+                <property name="show-end-title-buttons" bind-source="main_leaflet" bind-property="folded" bind-flags="sync-create"/>
+                <property name="title-widget">
+                  <object class="GtkBox" id="title_box">
+                    <property name="orientation">horizontal</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="AdwWindowTitle" id="sidebar_title_widget">
+                        <property name="title" translatable="yes">Mutiny</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="sidebar_title_button">
+                        <!-- Placeholder -->
+                        <property name="icon-name">emoji-food-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
               </object>
-            </property>
-            <child type="end">
-              <object class="GtkMenuButton" id="appmenu_button">
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="menu-model">primary_menu</property>
+            </child>
+
+            <child>
+              <object class="GtkListBox">
+                <child>
+                  <object class="GtkListBoxRow">
+                    <child>
+                      <object class="GtkBox">
+                        <property name="margin-start">24</property>
+                        <property name="margin-end">24</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <property name="spacing">12</property>
+                        <child>
+                          <object class="AdwAvatar">
+                            <property name="text">among us</property>
+                            <property name="size">24</property>
+                            <property name="show-initials">true</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="hexpand">True</property>
+                            <property name="label" translatable="yes">Among Us</property>
+                            <property name="xalign">0</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="icon_name">go-next-symbolic</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel" id="label">
-            <property name="label" translatable="yes">Hello world!</property>
+          <object class="AdwLeafletPage">
+            <property name="navigatable">False</property>
+            <property name="child">
+              <object class="GtkSeparator" id="panel_separator">
+                <property name="orientation">vertical</property>
+                <style>
+                  <class name="sidebar"/>
+                </style>
+              </object>
+            </property>
+
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox">
             <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="AdwHeaderBar">
+                <property name="title-widget">
+                  <object class="AdwWindowTitle">
+                    <property name="title" translatable="yes">Test server</property>
+                  </object>
+                </property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
-    </property>
+    </child>
   </template>
 </interface>
