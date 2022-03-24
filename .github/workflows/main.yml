@@ -15,5 +15,5 @@ jobs:
     - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
       with:
         bundle: mutiny.flatpak
-        manifest-path: build-aux/char.revolt.Mutiny.Devel.json
+        manifest-path: build-aux/chat.revolt.Mutiny.Devel.json
         cache-key: flatpak-builder-${{ github.sha }}
