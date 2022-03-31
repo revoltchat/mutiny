@@ -2,6 +2,7 @@ mod application;
 #[rustfmt::skip]
 mod config;
 mod window;
+mod server_entry;
 
 use gettextrs::{gettext, LocaleCategory};
 use gtk::{gio, glib};

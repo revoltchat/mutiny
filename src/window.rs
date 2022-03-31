@@ -7,6 +7,8 @@ use crate::application::MutinyApp;
 use crate::config::{APP_ID, PROFILE};
 
 mod imp {
+    use crate::server_entry::ServerEntry;
+
     use super::*;
 
     use gtk::CompositeTemplate;
@@ -16,6 +18,8 @@ mod imp {
     pub struct MutinyAppWindow {
         // #[template_child]
         // pub headerbar: TemplateChild<adw::HeaderBar>,
+        #[template_child]
+        pub server_list: TemplateChild<gtk::ListBox>,
         pub settings: gio::Settings,
     }
 
@@ -23,6 +27,7 @@ mod imp {
         fn default() -> Self {
             Self {
                 // headerbar: TemplateChild::default(),
+                server_list: TemplateChild::default(),
                 settings: gio::Settings::new(APP_ID),
             }
         }
@@ -35,6 +40,8 @@ mod imp {
         type ParentType = adw::ApplicationWindow;
 
         fn class_init(klass: &mut Self::Class) {
+            ServerEntry::ensure_type();
+
             Self::bind_template(klass);
         }
 
@@ -55,6 +62,11 @@ mod imp {
 
             // Load latest window state
             obj.load_window_size();
+
+            for _ in 0..100 {
+                self.server_list.append(&ServerEntry::new());
+            }
+
         }
     }
 
