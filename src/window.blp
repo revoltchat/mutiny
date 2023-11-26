@@ -2,50 +2,350 @@ using Gtk 4.0;
 using Adw 1;
 
 template $MutinyWindow : Adw.ApplicationWindow {
-  default-width: 600;
-  default-height: 300;
-  content: 
-  Adw.ToolbarView {
-    [top]
-    Adw.HeaderBar header_bar {
-      [end]
-      MenuButton {
-        primary: true;
-        icon-name: "open-menu-symbolic";
-        tooltip-text: _("Menu");
-        menu-model: primary_menu;
-      }
-    }
-    content: 
-    Label label {
-      label: "Hello, World!";
+  width-request: 360;
+  height-request: 350;
+  default-width: 1440;
+  default-height: 680;
 
-      styles [
-        "title-1",
-      ]
-    }
+  Adw.Breakpoint {
+    condition ("max-width: 860sp")
 
-    ;
+    setters {
+      outer_view.collapsed: true;
+    }
   }
 
-  ;
+  Adw.Breakpoint {
+    condition ("max-width: 500sp")
+
+    setters {
+      outer_view.collapsed: true;
+      inner_view.collapsed: true;
+    }
+  }
+
+  content: Adw.OverlaySplitView outer_view {
+    max-sidebar-width: 290;
+
+    sidebar: Adw.NavigationPage {
+      title: "Mutiny";
+
+      child: Adw.ToolbarView {
+        [top]
+        Adw.HeaderBar {
+          show-title: true;
+
+          [start]
+          MenuButton {
+            label: "User Menu";
+            menu-model: user_header_menu;
+            has-frame: false;
+
+            child: Adw.Avatar {
+              text: "loki#7571";
+              show-initials: true;
+              size: 20;
+            };
+          }
+
+          [end]
+          MenuButton {
+            label: _("Main Menu");
+            icon-name: "open-menu-symbolic";
+            menu-model: main_menu;
+            primary: true;
+          }
+        }
+
+        ScrolledWindow {
+          child: Box {
+            orientation: vertical;
+
+            ListBox {
+              selection-mode: none;
+
+              styles [
+                "navigation-sidebar"
+              ]
+
+              ListBoxRow {
+                Adw.ActionRow {
+                  title: _("Saved Notes");
+
+                  [prefix]
+                  Image {
+                    icon-name: "notepad-symbolic";
+                  }
+                }
+              }
+
+              ListBoxRow {
+                Adw.ActionRow {
+                  title: _("Discover");
+
+                  [prefix]
+                  Image {
+                    icon-name: "compass2-symbolic";
+                  }
+                }
+              }
+            }
+
+            Separator {
+              margin-end: 10;
+              margin-start: 10;
+            }
+
+            ListView servers_list_view {
+              styles [
+                "navigation-sidebar"
+              ]
+
+              factory: BuilderListItemFactory {
+                template ListItem {
+                  child: Adw.ActionRow {
+                    title: bind template.item as <StringObject>.string;
+                    title-lines: 1;
+
+                    [prefix]
+                    Adw.Avatar {
+                      text: bind template.item as <StringObject>.string;
+                      show-initials: true;
+                      size: 18;
+                    }
+
+                    [suffix]
+                    Image {
+                      icon-name: "dot-symbolic";
+                    }
+                  };
+                }
+              };
+            }
+
+            ListBox {
+              selection-mode: browse;
+
+              styles [
+                "navigation-sidebar"
+              ]
+            }
+          };
+        }
+      };
+    };
+
+    content: Adw.NavigationSplitView inner_view {
+      min-sidebar-width: 290;
+      max-sidebar-width: 320;
+      sidebar-width-fraction: 0.355;
+
+      sidebar: Adw.NavigationPage {
+        title: "The Six Seas (the 7th was banned)";
+
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {
+            [end]
+            MenuButton {
+              label: _("Server Menu");
+              menu-model: server_menu;
+              icon-name: "down-symbolic";
+            }
+          }
+
+          ScrolledWindow {
+            child: Box {
+              orientation: vertical;
+
+              Picture server_banner {
+                can-shrink: true;
+                content-fit: cover;
+                margin-start: 10;
+                margin-end: 10;
+              }
+
+              ListView channels_list_view {
+                styles [
+                  "navigation-sidebar"
+                ]
+
+                enable-rubberband: true;
+
+                factory: BuilderListItemFactory {
+                  template ListItem {
+                    child: Box {
+                      Gtk.Label {
+                        label: bind template.item as <StringObject>.string;
+                        height-request: 10;
+                        margin-start: 12;
+                        margin-end: 12;
+                      }
+                    };
+                  }
+                };
+              }
+            };
+          }
+        };
+      };
+
+      content: Adw.NavigationPage {
+        tag: "content";
+
+        child: Adw.ToolbarView {
+          // reveal-bottom-bars: false; // use this for when content warning is visible
+
+          [top]
+          Adw.HeaderBar {
+            show-title: true;
+
+            [start]
+            Button {
+              label: _("Toggle Sidebar");
+              icon-name: "dock-left-symbolic";
+            }
+
+            title-widget: Adw.WindowTitle {
+              title: "Revolt Discussion";
+              subtitle: "On-topic channel for discussions regarding Revolt";
+            };
+
+            [end]
+            MenuButton channel_header_menu_button {
+              menu-model: channel_header_menu;
+              icon-name: "view-more-symbolic";
+            }
+          }
+
+          content: ScrolledWindow {
+            child: Adw.Clamp chat_clamp {
+              maximum-size: 1000;
+
+              /*Adw.StatusPage {
+                  icon-name: "chat-bubbles-empty-inverted-symbolic";
+                  title: _("Empty");
+                  description: _("No one has sent a message in this channel yet");
+                } */
+              Box {
+                orientation: vertical;
+                spacing: 10;
+                margin-top: 10;
+                margin-bottom: 10;
+                // TODO: chat message desig
+                Box {}
+              }
+            };
+          };
+
+          [bottom]
+          ActionBar {
+            [center]
+            Adw.Clamp {
+              maximum-size: bind chat_clamp.maximum-size;
+
+              Box {
+                spacing: 5;
+
+                Button add_attachments_button {
+                  label: _("Add attachments");
+                  icon-name: "mail-attachment-symbolic";
+                }
+
+                Entry {
+                  hexpand: true;
+                  show-emoji-icon: true;
+                  enable-emoji-completion: true;
+                  max-length: 2000;
+                  placeholder-text: _("Message this channel");
+                  extra-menu: messagebar_menu;
+                }
+
+                Button preferences_menu_button {
+                  label: _("Send Message");
+                  icon-name: "paper-plane-symbolic";
+
+                  styles [
+                    "suggested-action"
+                  ]
+                }
+              }
+            }
+          }
+        };
+      };
+    };
+  };
 }
 
-menu primary_menu {
+menu main_menu {
   section {
-    item {
-      label: _("_Preferences");
-      action: "app.preferences";
-    }
-
-    item {
-      label: _("_Keyboard Shortcuts");
-      action: "win.show-help-overlay";
-    }
-
-    item {
-      label: _("_About Mutiny");
-      action: "app.about";
-    }
+    item (_("Create a Server"))
   }
+
+  section {
+    item (_("Preferences"), "app.preferences")
+    item (_("Keyboard Shortcuts"))
+    item (_("About Mutiny"), "app.about")
+  }
+}
+
+menu user_header_menu {
+  section {
+    item (_("Account settings"))
+
+    submenu {
+      label: _("Status");
+      item (_("Online"))
+      item (_("Away"))
+      item (_("Focus"))
+      item (_("Do Not Disturb"))
+    }
+
+    item (_("Friends"))
+  }
+
+  section {
+    submenu {
+      label: _("Switch Account");
+      item ("Account 1")
+      item ("Account 2")
+      item ("Account 3")
+    }
+
+    item (_("Logout"))
+  }
+}
+
+menu server_menu {
+  section {
+    item (_("Edit Identity"))
+  }
+
+  section {
+    item (_("Create Invite"))
+    item (_("Server Details"))
+    item (_("Server Settings"))
+  }
+
+  section {
+    item (_("Report Server"))
+    item (_("Leave Server"))
+  }
+}
+
+menu channel_header_menu {
+  section actions {
+    item (_("Search"))
+  }
+
+  section information {
+    item (_("Members"))
+    item (_("Channel Details"))
+    item (_("Channel Settings"))
+  }
+}
+
+menu messagebar_menu {
+  item (_("Edit in New Window"))
 }
