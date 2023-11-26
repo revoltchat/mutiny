@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=mutiny
+Exec=chat.revolt.Mutiny
+Icon=chat.revolt.Mutiny
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
