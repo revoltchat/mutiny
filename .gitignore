@@ -1,1 +1,5 @@
+# Dependencies
 /subprojects/blueprint-compiler
+
+# Build files
+.flatpak-builder
