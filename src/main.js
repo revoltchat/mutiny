@@ -24,6 +24,7 @@ import Gtk from 'gi://Gtk?version=4.0';
 import Adw from 'gi://Adw?version=1';
 
 import { MutinyWindow } from './window.js';
+import { MutinyPreferences } from './preferences.js';
 
 pkg.initGettext();
 pkg.initFormat();
@@ -40,6 +41,13 @@ export const MutinyApplication = GObject.registerClass(
             this.add_action(quit_action);
             this.set_accels_for_action('app.quit', ['<primary>q']);
 
+            const show_preferences_action = new Gio.SimpleAction({name: 'preferences'});
+            show_preferences_action.connect('activate', action => {
+                const preferencesWindow = new MutinyPreferences(this);
+                preferencesWindow.present();
+            });
+            this.add_action(show_preferences_action);
+
             const show_about_action = new Gio.SimpleAction({name: 'about'});
             show_about_action.connect('activate', action => {
                 let aboutParams = {
@@ -51,7 +59,9 @@ export const MutinyApplication = GObject.registerClass(
                     developers: [
                         'Loki Calmito'
                     ],
-                    copyright: '© 2023 Loki Calmito'
+                    copyright: '© 2023 Loki Calmito',
+                    license_type: Gtk.License.GPL_3_0_ONLY,
+                    issue_url: "https://github.com/revoltchat/mutiny/issues",
                 };
                 const aboutWindow = new Adw.AboutWindow(aboutParams);
                 aboutWindow.present();

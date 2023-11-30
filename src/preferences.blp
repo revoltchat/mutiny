@@ -1,0 +1,61 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $MutinyPreferences : Adw.PreferencesWindow {
+  default-width: 800;
+  default-height: 600;
+  title: _("Preferences");
+
+  Adw.PreferencesPage appearance_page {
+    title: _("Appearance");
+    icon-name: "brush-monitor-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Color Settings");
+      description: _("Change the color-scheme of the application.");
+
+      Adw.ComboRow theme_switch{
+        title: _("Theme");
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Behavior");
+    icon-name: "settings-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Client Settings");
+
+      Adw.SwitchRow {
+        title: _("Disable link previews");
+        subtitle: _("Increases performance and privacy");
+      }
+
+      Adw.SwitchRow {
+        title: _("Hide channels with mature content");
+        subtitle: _("Hides them from the sidebar");
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Network Settings");
+
+      Adw.SwitchRow {
+        title: _("Enable Data Saver");
+        subtitle: _("Prevent media from being fetched. You can sill manually fetch individual media");
+      }
+    }
+  }
+}
+
+Adw.StatusPage subpage {
+  description: _("Custom Subpage");
+
+  Gtk.Button subpage_button {
+    label: _("Go back");
+    halign: center;
+    valign: center;
+    styles ["suggested-action", "pill"]
+  }
+}
