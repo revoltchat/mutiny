@@ -3,3 +3,6 @@
 
 # Build files
 .flatpak-builder
+
+# VSCode data
+.vscode
