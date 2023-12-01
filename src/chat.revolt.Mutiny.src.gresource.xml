@@ -3,5 +3,6 @@
   <gresource prefix="/chat/revolt/Mutiny/js">
     <file>main.js</file>
     <file>window.js</file>
+    <file>preferences.js</file>
   </gresource>
 </gresources>

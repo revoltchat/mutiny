@@ -25,7 +25,6 @@ import Adw from 'gi://Adw';
 export const MutinyWindow = GObject.registerClass({
     GTypeName: 'MutinyWindow',
     Template: 'resource:///chat/revolt/Mutiny/window.ui',
-    InternalChildren: ['label'],
 }, class MutinyWindow extends Adw.ApplicationWindow {
     constructor(application) {
         super({ application });
