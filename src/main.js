@@ -1,6 +1,6 @@
 /* main.js
  *
- * Copyright 2023 loki
+ * Copyright 2023 Loki Calmito
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+"use strict"
 
 import GObject from 'gi://GObject';
 import Gio from 'gi://Gio';
@@ -84,3 +85,4 @@ export function main(argv) {
     const application = new MutinyApplication();
     return application.runAsync(argv);
 }
+

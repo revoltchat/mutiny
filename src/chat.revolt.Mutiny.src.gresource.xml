@@ -4,5 +4,6 @@
     <file>main.js</file>
     <file>window.js</file>
     <file>preferences.js</file>
+    <file>websocket.js</file>
   </gresource>
 </gresources>
