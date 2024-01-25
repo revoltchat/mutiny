@@ -1,6 +1,6 @@
 /* window.js
  *
- * Copyright 2023 loki
+ * Copyright 2023 Loki Calmito
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,15 +19,14 @@
  */
 
 import GObject from 'gi://GObject';
-import Gtk from 'gi://Gtk';
 import Adw from 'gi://Adw';
 
 export const MutinyWindow = GObject.registerClass({
-    GTypeName: 'MutinyWindow',
-    Template: 'resource:///chat/revolt/Mutiny/window.ui',
+	GTypeName: 'MutinyWindow',
+	Template: 'resource:///chat/revolt/Mutiny/ui/window.ui',
 }, class MutinyWindow extends Adw.ApplicationWindow {
-    constructor(application) {
-        super({ application });
-    }
+	constructor(application) {
+		super({ application });
+	}
 });
 

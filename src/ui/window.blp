@@ -38,11 +38,12 @@ template $MutinyWindow : Adw.ApplicationWindow {
           [start]
           MenuButton {
             label: "User Menu";
+            tooltip-text: bind MutinyWindow.username2;
             menu-model: user_header_menu;
             has-frame: false;
 
             child: Adw.Avatar {
-              text: "loki#7571";
+              text: "bruh";
               show-initials: true;
               size: 20;
             };
