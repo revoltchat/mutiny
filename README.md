@@ -1,3 +1,3 @@
-# mutiny
+# Mutiny
 
-A description of this project.
+A native GTK frontend for Revolt. Currently in early development.
