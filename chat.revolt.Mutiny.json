@@ -37,7 +37,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///home/loki/Projects"
+                    "url" : "https://github.com/revoltchat/mutiny"
                 }
             ]
         }
